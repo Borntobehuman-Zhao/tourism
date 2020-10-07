@@ -23,8 +23,8 @@
           <div class="cont_form_login"><a href="#" @click="ocultar_login_sign_up()"><i
             class="material-icons">&#xE5C4;</i></a>
             <h2>登录</h2>
-            <input type="text" placeholder="手机号" v-model="phone"/>
-            <input type="password" placeholder="密码" v-model="password"/>
+            <input type="text" placeholder="手机号" aria-required="true" v-model="phone"/>
+            <input type="password" placeholder="密码" aria-required="true" v-model="password"/>
             <form action="#">
               <input type="text" id="validCode"/>
               <input type="text" placeholder="点击获取验证码" @click="createCode()" readonly="readonly" id="checkCode"
@@ -35,9 +35,9 @@
           <div class="cont_form_sign_up"><a href="#" @click="ocultar_login_sign_up()"><i
             class="material-icons">&#xE5C4;</i></a>
             <h2>注册</h2>
-            <input type="text" placeholder="姓名" v-model="username"/>
-            <input type="text" placeholder="电话" v-model="phone"/>
-            <input type="password" placeholder="密码" v-model="password"/> <br>
+            <input type="text" placeholder="姓名" aria-required="true" v-model="username"/>
+            <input type="text" placeholder="电话" aria-required="true" v-model="phone"/>
+            <input type="password" placeholder="密码" aria-required="true" v-model="password"/> <br>
             <p> 性别:
               <template>
                 <el-radio v-model="radio" label="0">男</el-radio>
