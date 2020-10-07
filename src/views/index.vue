@@ -41,7 +41,7 @@
               <router-link to="/attractions">景点推荐</router-link>
             </td>
             <td align="center">
-              <router-link to="/hotel">酒店推荐</router-link>
+              <router-link to="/hotels">酒店推荐</router-link>
             </td>
             <td align="center"><a href="#">旅游攻略</a></td>
           </tr>
