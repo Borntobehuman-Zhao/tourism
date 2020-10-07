@@ -110,7 +110,7 @@ export default {
       ctx.fillText(a, 0, 100);
     },
     validate() {
-
+      const di =1;
     },
     cambiar_sign_up(at) {
       document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_sign_up";
