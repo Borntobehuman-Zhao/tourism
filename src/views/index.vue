@@ -113,7 +113,6 @@
         </tr>
       </table>
     </div>
-
   </div>
   </div>
 </template>
