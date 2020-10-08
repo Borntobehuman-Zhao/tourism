@@ -7,13 +7,9 @@ Vue.use(Router)
 
 const routes = [
   {
-    path: '/index',
+    path: '/',
     name: 'index',
     component: index
-  },
-  {
-    path: '/',
-    redirect: '/index'
   },
   {
     path: '/login',
@@ -41,7 +37,8 @@ const routes = [
     component: () => import('../views/personal.vue')
   },
 ]
+const router = new Router({
+  mode: 'history',
+  routes
+})
 
-
-const router = new Router({routes})
-export default router

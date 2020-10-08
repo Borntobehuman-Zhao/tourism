@@ -45,7 +45,7 @@
       <div class="picture">
         <div class="block">
           <el-carousel trigger="click" height="650px" align="left">
-            <el-carousel-item v-for="item in imageList" :key="item">
+            <el-carousel-item v-for="(item,index1) in imageList" :key="index1">
               <img v-bind:src="item.url" width="100%" height="600px">
             </el-carousel-item>
           </el-carousel>
@@ -78,310 +78,35 @@
       </table>
       <div class="tab">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="华清池" name="first">
+          <el-tab-pane v-for="(test,index2) in attractionList" :key="index2" :label="test.name" :name="test.name">
             <div class="enlarge">
               <table>
                 <tr>
-                  <td><img src="../assets/resources/picture/华清池/华清池1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华清池/华清池2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华清池/华清池5.jpg" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'1.jpg'" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'2.jpg'" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'3.jpg'" height="100px" width="150px"/></td>
                 </tr>
               </table>
             </div>
             <div class="enlarge">
               <table>
                 <tr>
-                  <td><img src="../assets/resources/picture/华清池/华清池4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华清池/华清池3.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华清池/华清池6.jpg" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'4.jpg'" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'5.jpg'" height="100px" width="150px"/></td>
+                  <td><img :src="test.url+'6.jpg'" height="100px" width="150px"/></td>
                 </tr>
                 <div class="font">
                   <el-divider content-position="left"><h2>基本信息</h2></el-divider>
                   <table  width="100%" height="300px" class="font3">
                     <tr>
-                      <td>中文名：唐华清宫</td>
+                      <td>中文名：{{test.name}}</td>
+                    </tr>
+                    <tr>
+                      <td>地理位置：{{test.address}}</td>
                     </tr>
                     <el-divider></el-divider>
                     <tr>
-                      <td>地理位置：陕西省西安市临潼区</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：华清池、骊山宫、骊宫、绣岭宫</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：120元/人</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="太白山" name="second">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/太白山/太白山1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/太白山/太白山2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/太白山/太白山3.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/太白山/太白山4.png" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/太白山/太白山5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/太白山/太白山6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：太白山</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地域范围：陕西太白、眉县、周至三县</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：太乙山</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：220元/人</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="黄帝陵" name="third">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵3.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/黄帝陵/黄帝陵6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：黄帝陵</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地理位置：陕西省延安市黄陵县桥山镇</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：桥陵</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：75元/人</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="秦始皇兵马俑" name="fourth">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑3.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑1.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/秦始皇兵马俑/兵马俑6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：秦始皇兵马俑</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地理位置：陕西省西安市临潼区</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：兵马俑，秦兵马俑，秦俑</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：120元/人</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="马嵬驿" name="fifth">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民俗文化体验园1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民族文化体验园2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民族文化体验园3.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民族文化体验园4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民族文化体验园5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/马嵬驿/马嵬驿民族文化体验园6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：马嵬驿</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地理位置：陕西省咸阳市兴平市西</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：马嵬坡</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：120元/人</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="华阳古镇" name="sixth">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇3.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/华阳古镇/华阳古镇6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：华阳古镇</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地理位置：陕西省汉中市华阳镇</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：无</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：免费</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <router-link to="/hotels">酒店预订
-                      </router-link>
-                    </tr>
-                  </table>
-                </div>
-              </table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="宝塔山" name="seventh">
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山1.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山2.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山3.jpg" height="100px" width="150px"/></td>
-                </tr>
-              </table>
-            </div>
-            <div class="enlarge">
-              <table>
-                <tr>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山4.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山5.jpg" height="100px" width="150px"/></td>
-                  <td><img src="../assets/resources/picture/宝塔山/宝塔山6.jpg" height="100px" width="150px"/></td>
-                </tr>
-                <div class="font">
-                  <el-divider content-position="left"><h2>基本信息</h2></el-divider>
-                  <table  width="100%" height="300px" class="font3">
-                    <tr>
-                      <td>中文名：宝塔山</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>地理位置：延安城东地</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>别名：嘉岭山</td>
-                    </tr>
-                    <el-divider></el-divider>
-                    <tr>
-                      <td>门票：65元/人</td>
+                      <td>门票：{{test.price}}/人</td>
                     </tr>
                     <el-divider></el-divider>
                     <tr>
@@ -442,6 +167,7 @@ export default {
     return {
       activeName: 'second',
       admin: sessionStorage.getItem("loginSuccess"),
+      attractionList : '',
       imageList: [
         {
           url: require("../assets/resources/picture/lunbo1.jpg")
@@ -468,6 +194,15 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     }
+  },
+  created() {
+    this.$axios({
+      method:'get',
+      url: 'api/findAllAttraction',
+    }).then(res =>{
+      this.attractionList = res.data.data;
+      console.log(this.attractionList);
+    }).catch(error =>console.log(error,"error"));
   }
 }
 </script>
