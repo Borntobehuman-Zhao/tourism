@@ -28,8 +28,10 @@
                 <el-dropdown-item>
                   <router-link to="login">登出</router-link>
                 </el-dropdown-item>
-                <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
-                <el-dropdown-item disabled>查询预订</el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link to="personal">个人资料</router-link>
+                </el-dropdown-item>
+                <el-dropdown-item  @click.native="look()">查询预订</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </td>
@@ -122,6 +124,7 @@ export default {
   data() {
     return {
       admin: (this.$route.params.loginSuccess !== undefined),
+      host1: sessionStorage.getItem("userName"),
       imageList: [
         {
           url: require("../assets/resources/picture/lunbo1.jpg")
@@ -151,12 +154,28 @@ export default {
     }
   },
   methods: {
-    register() {
-      this.$router.push('/register')
+    look(){
+      this.$axios({
+        method : 'post',
+        url:'api/findRecode',
+        data : {
+          customerId : this.customerId
+        }
+      }).then(res =>{
+        alert(JSON.stringify(res.data.data));
+      }).catch(error => console.log(error,"error"))
     },
-    login() {
-      this.$router.push('/login')
-    },
+  },
+  created() {
+    this.$axios({
+      method: 'post',
+      url: 'api/findByPhone',
+      data: {
+        phone: this.host1
+      }
+    }).then(res => {
+      this.customerId = res.data.data.id
+    }).catch(error => console.log(error, "error"))
   },
   beforeRouteEnter(to, from, next) {
     // 添加背景色

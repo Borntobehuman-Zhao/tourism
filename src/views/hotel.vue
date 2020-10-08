@@ -29,8 +29,10 @@
                   <el-dropdown-item>
                     <router-link to="login">登出</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
-                  <el-dropdown-item disabled>查询预订</el-dropdown-item>
+                  <el-dropdown-item>
+                    <router-link to="personal">个人资料</router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click.native="look()">查询预订</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </td>
@@ -43,26 +45,26 @@
         </table>
       </div>
       <div class="head10">
-        <h2>香格里拉大酒店(西安钟楼东路店)</h2>
+        <h2>{{ hostel.name }}({{ hostel.address }})</h2>
         <div class="head11">
           <table width="100%" align="center">
             <tr>
               <td>
-                <img src="../assets/resources/picture/酒店照片/2.jpg" height="376" width="100%">
+                <img :src="hostel.url+'1.jpg'" height="376" width="100%">
               </td>
               <td>
                 <table>
                   <tr>
-                    <td><img src="../assets/resources/picture/酒店内景/1.jpg" height="120px" width="220"></td>
-                    <td><img src="../assets/resources/picture/酒店内景/2.jpg" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'2.jpg'" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'3.jpg'" height="120px" width="220"></td>
                   </tr>
                   <tr>
-                    <td><img src="../assets/resources/picture/酒店内景/3.jpg" height="120px" width="220"></td>
-                    <td><img src="../assets/resources/picture/酒店内景/4.jpg" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'4.jpg'" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'5.jpg'" height="120px" width="220"></td>
                   </tr>
                   <tr>
-                    <td><img src="../assets/resources/picture/酒店内景/5.jpg" height="120px" width="220"></td>
-                    <td><img src="../assets/resources/picture/酒店内景/6.jpg" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'6.jpg'" height="120px" width="220"></td>
+                    <td><img :src="hostel.url+'7.jpg'" height="120px" width="220"></td>
                   </tr>
                 </table>
               </td>
@@ -313,14 +315,18 @@ export default {
       status: 1,
       price_two: 1,
       admin: (this.$route.params.loginSuccess !== undefined),
+      host1: sessionStorage.getItem("userName"),
       activeName: 'first',
-      hostelId: 1,
+      hostelList: '',
       roomId_big: 1,
       roomId_two: 1,
       member1: 0.9,
       member2: 0.8,
       value1: '',
       value2: '',
+      hostelId: this.$route.params.hostelId,
+      hostel: '',
+      customerId: '',
     }
   },
   methods: {
@@ -347,6 +353,21 @@ export default {
           }).then(res => {
             if (res.data.code === 200) {
               alert("恭喜你，预订成功啦")
+              this.$axios({
+                method: 'post',
+                url: 'api/insertRecode',
+                data: {
+                  customerId: this.customerId,
+                  hostelId: this.hostelId,
+                  roomId: this.roomId_big,
+                  time: this.value1
+                }
+              }).then(res => {
+                if (res.data.code === 200) {
+                  console.log("插入成功")
+                  console.log(res.data);
+                }
+              }).catch(error => console.log(error, "error"))
               console.log(res.data);
             }
           }).catch(error => console.log(error, "error"))
@@ -358,9 +379,6 @@ export default {
       }
     },
     order_two() {
-      {
-
-      }
       if (this.$store.getters.isLogin) {
         if (this.value1 !== '' && this.value2 !== '') {
           console.log("预定了双人床")
@@ -378,6 +396,21 @@ export default {
           }).then(res => {
             if (res.data.code === 200) {
               alert("恭喜你，预订成功啦")
+              this.$axios({
+                method: 'post',
+                url: 'api/insertRecode',
+                data: {
+                  customerId: this.customerId,
+                  hostelId: this.hostelId,
+                  roomId: this.roomId_two,
+                  time: this.value1
+                }
+              }).then(res => {
+                if (res.data.code === 200) {
+                  console.log("插入成功")
+                  console.log(res.data);
+                }
+              }).catch(error => console.log(error, "error"))
               console.log(res.data);
             }
           }).catch(error => console.log(error, "error"))
@@ -387,6 +420,17 @@ export default {
       } else {
         alert("请先登录");
       }
+    },
+    look() {
+      this.$axios({
+        method: 'post',
+        url: 'api/findRecode',
+        data: {
+          customerId: this.customerId
+        }
+      }).then(res => {
+        alert(JSON.stringify(res.data.data));
+      }).catch(error => console.log(error, "error"))
     }
   },
   computed: {
@@ -402,6 +446,7 @@ export default {
     },
   },
   created() {
+    console.log(this.hostelId)
     this.$axios({
       method: 'post',
       url: 'api/findDefault',
@@ -423,6 +468,27 @@ export default {
     }).then(res => {
       this.price_two = res.data.data.price;
       this.roomId_two = res.data.data.roomId;
+    }).catch(error => console.log(error, "error"))
+    this.$axios({
+      method: 'post',
+      url: 'api/findHostel',
+      data: {
+        hostelId: this.hostelId,
+        type: 'big'
+      },
+    }).then(res => {
+      this.hostel = res.data.data
+      console.log(this.hostel)
+    }).catch(error => console.log(error, "error"))
+    console.log(this.admin)
+    this.$axios({
+      method: 'post',
+      url: 'api/findByPhone',
+      data: {
+        phone: this.host1
+      }
+    }).then(res => {
+      this.customerId = res.data.data.id
     }).catch(error => console.log(error, "error"))
   },
   beforeRouteEnter(to, from, next) {

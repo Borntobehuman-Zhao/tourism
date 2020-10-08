@@ -28,8 +28,10 @@
                 <el-dropdown-item>
                   <router-link to="login">登出</router-link>
                 </el-dropdown-item>
-                <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
-                <el-dropdown-item disabled>查询预订</el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link to="personal">个人资料</router-link>
+                </el-dropdown-item>
+                <el-dropdown-item @click.native="look()">查询预订</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </td>
@@ -44,7 +46,7 @@
     <div class="picture1">
       <div class="block">
         <el-carousel trigger="click" height="570px" align="center">
-          <el-carousel-item v-for="item in imageList" :key="item">
+          <el-carousel-item v-for="(item,index1) in imageList" :key="index1">
             <img v-bind:src="item.url" width="100%">
           </el-carousel-item>
         </el-carousel>
@@ -53,38 +55,18 @@
     <div class="head6">
       <table width="98%" align="center">
         <tr>
-          <td align="center">
-            <img src="../assets/resources/picture/酒店照片/1.jpg" height="260px" width="80%"><br/>
-            <p>豪生大酒店</p><br/>
-            <router-link to="/hotel">预订/查看详情
-            </router-link>
-            >
-          </td>
-          <td align="center">
-            <img src="../assets/resources/picture/酒店照片/1.jpg" height="260px" width="80%"><br/>
-            <p>豪生大酒店</p><br/>
-            <router-link to="/hotel">预订/查看详情
-            </router-link>
-            >
-          </td>
-          <td align="center">
-            <img src="../assets/resources/picture/酒店照片/2.jpg" height="260px" width="80%"><br/>
-            <p>君悦酒店</p><br/>
-            <router-link to="/hotel">预订/查看详情
+          <td align="center" v-for="(hostel,index2) in hostelList" :key="index2" v-if="hostel.id%2 !== 1">
+            <img :src="hostel.url+'1.jpg'" height="260px" width="80%"><br/>
+            <p>{{hostel.name}}</p><br/>
+            <router-link :to="{name:'hostel',params:{hostelId:hostel.id}}">预订/查看详情
             </router-link>
           </td>
         </tr>
         <tr>
-          <td align="center">
-            <img src="../assets/resources/picture/酒店照片/3.jpg" height="260px" width="80%"><br/>
-            <p>瑞吉酒店</p><br/>
-            <router-link to="/hotel">预订/查看详情
-            </router-link>
-          </td>
-          <td align="center">
-            <img src="../assets/resources/picture/酒店照片/4.jpg" height="260px" width="80%"><br/>
-            <p>7天酒店</p><br/>
-            <router-link to="/hotel">预订/查看详情
+          <td align="center" v-for="(hostel,index2) in hostelList" :key="index2" v-if="hostel.id%2 !== 0">
+            <img :src="hostel.url+'1.jpg'" height="260px" width="80%"><br/>
+            <p>{{hostel.name}}</p><br/>
+            <router-link :to="{name:'hostel',params:{hostelId:hostel.id}}">预订/查看详情
             </router-link>
           </td>
         </tr>
@@ -133,6 +115,8 @@ export default {
   data() {
     return {
       admin: sessionStorage.getItem("loginSuccess"),
+      host1: sessionStorage.getItem("userName"),
+      hostelList : '',
       imageList: [
         {
           url: require("../assets/resources/picture/酒店照片/14.jpg")
@@ -159,14 +143,40 @@ export default {
         this.$store.commit("userStatus", null);
       }
       return this.$store.getters.isLogin;
-    }
+    },
+  },
+  created() {
+    this.$axios({
+      method: 'post',
+      url: 'api/hostel',
+      data: {
+        limit: 4,
+      },
+    }).then(res => {
+      console.log(res.data.data)
+      this.hostelList = res.data.data
+    }).catch(error => console.log(error, "error"))
+    this.$axios({
+      method: 'post',
+      url: 'api/findByPhone',
+      data: {
+        phone: this.host1
+      }
+    }).then(res => {
+      this.customerId = res.data.data.id
+    }).catch(error => console.log(error, "error"))
   },
   methods: {
-    register() {
-      this.$router.push('/register')
-    },
-    login() {
-      this.$router.push('/login')
+    look(){
+      this.$axios({
+        method : 'post',
+        url:'api/findRecode',
+        data : {
+          customerId : this.customerId
+        }
+      }).then(res =>{
+        alert(JSON.stringify(res.data.data));
+      }).catch(error => console.log(error,"error"))
     }
   },
   beforeRouteEnter(to, from, next) {

@@ -27,12 +27,12 @@
   </span>
                 <el-dropdown-menu slot="dropdown" style="background-color: #757575">
                   <el-dropdown-item>
-                    <router-link to="login" >登出</router-link>
+                    <router-link to="login">登出</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item divided>
+                  <el-dropdown-item>
                     <router-link to="personal">个人资料</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item disabled>查询预订</el-dropdown-item>
+                  <el-dropdown-item @click.native="look()">查询预订</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </td>
@@ -172,6 +172,7 @@ export default {
     return {
       activeName: '',
       admin: sessionStorage.getItem("loginSuccess"),
+      host1: sessionStorage.getItem("userName"),
       attractionList: '',
       imageList: [
         {
@@ -198,6 +199,17 @@ export default {
     },
     handleClick(tab, event) {
       console.log(tab, event);
+    },
+    look() {
+      this.$axios({
+        method: 'post',
+        url: 'api/findRecode',
+        data: {
+          customerId: this.customerId
+        }
+      }).then(res => {
+        alert(JSON.stringify(res.data.data));
+      }).catch(error => console.log(error, "error"))
     }
   },
   created() {
@@ -209,6 +221,15 @@ export default {
       this.attractionList = res.data.data;
       console.log(this.attractionList);
     }).catch(error => console.log(error, "error"));
+    this.$axios({
+      method: 'post',
+      url: 'api/findByPhone',
+      data: {
+        phone: this.host1
+      }
+    }).then(res => {
+      this.customerId = res.data.data.id
+    }).catch(error => console.log(error, "error"))
   },
   computed: {
     isLogin() {
