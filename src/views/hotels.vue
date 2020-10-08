@@ -24,12 +24,12 @@
   <span class="el-dropdown-link">
    <img src="../assets/resources/picture/message.png"/>个人中心
   </span>
-              <el-dropdown-menu slot="dropdown">
+              <el-dropdown-menu slot="dropdown" style="background-color: #757575">
                 <el-dropdown-item>
                   <router-link to="login">登出</router-link>
                 </el-dropdown-item>
-                <el-dropdown-item divided>合作</el-dropdown-item>
-                <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
+                <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
+                <el-dropdown-item disabled>查询预订</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </td>
@@ -53,6 +53,13 @@
     <div class="head6">
       <table width="98%" align="center">
         <tr>
+          <td align="center">
+            <img src="../assets/resources/picture/酒店照片/1.jpg" height="260px" width="80%"><br/>
+            <p>豪生大酒店</p><br/>
+            <router-link to="/hotel">预订/查看详情
+            </router-link>
+            >
+          </td>
           <td align="center">
             <img src="../assets/resources/picture/酒店照片/1.jpg" height="260px" width="80%"><br/>
             <p>豪生大酒店</p><br/>

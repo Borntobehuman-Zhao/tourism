@@ -1,14 +1,48 @@
 <template>
   <div>
     <div class="head">
-      <img src="../assets/resources/picture/personal.png" height="650pxS">
-      <div class="head1">
-        <el-divider content-position="left">
-          <p>个人中心：</p>
-        </el-divider>
+      <div class="head3">
+        <table width="100%" align="center">
+          <tr>
+            <td width="20%" align="center"><img src="../assets/resources/picture/logo.jpg" width="130px" height="60px"></td>
+            <td><input type="text" placeholder="输入关键字搜索景区"/>
+              <button>搜索</button>
+            </td>
+            <td align="center">
+              <router-link to="/index">首页</router-link>
+            </td>
+            <td align="center">
+              <router-link to="/attractions">景点推荐</router-link>
+            </td>
+            <td align="center">
+              <router-link to="/hotels">酒店推荐</router-link>
+            </td>
+            <td align="center"><a href="#">旅游攻略</a></td>
+            <td>咨询热线：88888888</td>
+            <td v-if="isLogin" width="10%" align="center">
+              <el-dropdown>
+  <span class="el-dropdown-link">
+   <img src="../assets/resources/picture/message.png"/>个人中心
+  </span>
+                <el-dropdown-menu slot="dropdown" style="background-color: #757575">
+                  <el-dropdown-item>
+                    <router-link to="login">登出</router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
+                  <el-dropdown-item disabled>查询预订</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </td>
+            <td v-if="!isLogin">
+              <router-link to="/login">
+                <el-button type="success " round>登录</el-button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
       <div class="head2">
-        <table width="90%" height="500px">
+        <table width="90%" height="600px">
           <tr>
             <td width="30%" align="center">用户名：
             </td>
@@ -38,7 +72,6 @@
             <td width="70%" align="left" v-if="data.idNumber !== null">{{data.idNumber}}
             </td>
           </tr>
-          <el-divider></el-divider>
         </table>
       </div>
     </div>
@@ -77,7 +110,12 @@ export default {
     }).then(res => {
       this.data = res.data.data
     }).catch(error => console.log(error, "error"))
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    // 添加背景色
+    document.querySelector('body').setAttribute('style', 'background-color:#08092d')
+    next()
+  },
 }
 </script>
 

@@ -25,12 +25,14 @@
   <span class="el-dropdown-link">
    <img src="../assets/resources/picture/message.png"/>个人中心
   </span>
-                <el-dropdown-menu slot="dropdown">
+                <el-dropdown-menu slot="dropdown" style="background-color: #757575">
                   <el-dropdown-item>
-                    <router-link to="login">登出</router-link>
+                    <router-link to="login" >登出</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item divided>合作</el-dropdown-item>
-                  <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
+                  <el-dropdown-item divided>
+                    <router-link to="personal">个人资料</router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item disabled>查询预订</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </td>
@@ -79,7 +81,7 @@
         </table>
         <div class="tab">
           <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane v-for="(test,index2) in attractionList"  :key="index2" :label="test.name"
+            <el-tab-pane v-for="(test,index2) in attractionList" :key="index2" :label="test.name"
                          :name="test.name">
               <div class="enlarge">
                 <table>

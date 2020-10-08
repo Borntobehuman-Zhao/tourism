@@ -1,19 +1,17 @@
 .head{
   width: 100%;
   height: 100%;
+  color:#ffffff;
 }
 .head1{
   width: 90%;
   height: 100px;
-  position: absolute;
-  left: 5%;
-  top:0px;
 }
 .head2{
   width: 90%;
   height: 500px;
   align:center;
   position: absolute;
+  top:100px;
   left: 5%;
-  top: 100px;
 }
