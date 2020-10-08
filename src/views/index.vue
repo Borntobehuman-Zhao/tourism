@@ -28,7 +28,7 @@
                 <el-dropdown-item>
                   <router-link to="login">登出</router-link>
                 </el-dropdown-item>
-                <el-dropdown-item divided>合作</el-dropdown-item>
+                <el-dropdown-item divided><router-link to="personal">个人资料</router-link></el-dropdown-item>
                 <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>

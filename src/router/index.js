@@ -12,6 +12,11 @@ const routes = [
     component: index
   },
   {
+    path: '/index',
+    name: 'index',
+    component: index
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/login.vue')
@@ -41,4 +46,5 @@ const router = new Router({
   mode: 'history',
   routes
 })
+export default router
 

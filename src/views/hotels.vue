@@ -142,6 +142,18 @@ export default {
       ]
     }
   },
+  computed: {
+    isLogin() {
+      if (sessionStorage.getItem("userName") !== "null") {
+        console.log("未设置")
+        this.$store.commit("userStatus", sessionStorage.getItem("userName"));
+      } else {
+        console.log("设置为空")
+        this.$store.commit("userStatus", null);
+      }
+      return this.$store.getters.isLogin;
+    }
+  },
   methods: {
     register() {
       this.$router.push('/register')
@@ -149,7 +161,12 @@ export default {
     login() {
       this.$router.push('/login')
     }
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    // 添加背景色
+    document.querySelector('body').setAttribute('style', 'background-color:#08092d')
+    next()
+  },
 }
 </script>
 
