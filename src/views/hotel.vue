@@ -1,51 +1,46 @@
 <template>
   <div>
-    <div class="head3">
-      <table width="100%" align="center">
-        <tr>
-          <td><img src="../assets/resources/picture/logo.png"></td>
-          <td><input type="text" placeholder="输入关键字搜索景区"/>
-            <button>搜索</button>
-          </td>
-          <td>咨询热线：88888888</td>
-          <td v-if="isLogin">
-            <el-dropdown>
+    <div class="all">
+      <div class="head3">
+        <table width="100%" align="center">
+          <tr>
+            <td width="20%" align="center"><img src="../assets/resources/picture/logo.jpg" width="130px" height="60px"></td>
+            <td><input type="text" placeholder="输入关键字搜索景区"/>
+              <button>搜索</button>
+            </td>
+            <td align="center">
+              <router-link to="/index">首页</router-link>
+            </td>
+            <td align="center">
+              <router-link to="/attractions">景点推荐</router-link>
+            </td>
+            <td align="center">
+              <router-link to="/hotels">酒店推荐</router-link>
+            </td>
+            <td align="center"><a href="#">旅游攻略</a></td>
+            <td>咨询热线：88888888</td>
+            <td v-if="isLogin" width="10%" align="center">
+              <el-dropdown>
   <span class="el-dropdown-link">
-   <img src="../assets/resources/picture/message.png"> 个人中心
+   <img src="../assets/resources/picture/message.png"/>个人中心
   </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>
-                  <router-link to="login">登出</router-link>
-                </el-dropdown-item>
-                <el-dropdown-item divided>合作</el-dropdown-item>
-                <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </td>
-          <td v-if="!isLogin">
-            <router-link to="/login">
-              <el-button type="success " round>登录</el-button>
-            </router-link>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="head2">
-      <table width="100%" height="50px" align="center">
-        <tr>
-          <td align="center">
-            <router-link to="/index">首页</router-link>
-          </td>
-          <td align="center">
-            <router-link to="/attractions">景点推荐</router-link>
-          </td>
-          <td align="center">
-            <router-link to="/hotel">酒店推荐</router-link>
-          </td>
-          <td align="center"><a href="#">旅游攻略</a></td>
-        </tr>
-      </table>
-    </div>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>
+                    <router-link to="login">登出</router-link>
+                  </el-dropdown-item>
+                  <el-dropdown-item divided>合作</el-dropdown-item>
+                  <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </td>
+            <td v-if="!isLogin">
+              <router-link to="/login">
+                <el-button type="success " round>登录</el-button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
+      </div>
     <div class="head10">
       <h2>香格里拉大酒店(西安钟楼东路店)</h2>
       <div class="head11">
@@ -86,9 +81,9 @@
           <table width="1000px" height="600px">
 
             <tr>
-              <td>图1</td>
+              <td><img src="../assets/resources/picture/酒店内景/5.jpg" height="100" width="170"></td>
             <tr>
-              <table width="1000px" height="200px">
+              <table width="1000px" height="200px" border="1px">
                 <tr>
                   <td>官网专项价</td>
                   <td>不含早</td>
@@ -118,10 +113,10 @@
                 </tr>
               </table>
             </tr>
-            <table width="1000px" height="200px">
-              <tr>
-                <td>图2</td>
-              </tr>
+            <tr>
+              <td><img src="../assets/resources/picture/酒店内景/5.jpg" height="100" width="170"></td>
+            </tr>
+            <table width="1000px" height="200px" border="1px">
               <tr>
                 <td>官网专项价</td>
                 <td>不含早</td>
@@ -259,6 +254,41 @@
         <el-tab-pane label="酒店服务" name="fourth">定时任务补偿</el-tab-pane>
       </el-tabs>
     </div>
+      <div class="head88">
+        <table width="90%" align="center" height="200px">
+          <tr>
+            <td width="30%" align="center">
+              <img src="../assets/resources/picture/logo.jpg" align="center" height="40" width="90">
+              <h3>风尚三秦</h3>
+              <p>查看所有免费预订电话</p>
+              <p> 区域销售办事处 | 公司联系方式</p>
+            </td>
+            <td width="30%" align="center">
+              <p>关注我们</p>
+              <img src="../assets/resources/picture/微博.png" align="center" height="30" width="30">
+              <img src="../assets/resources/picture/微信.png" align="center" height="30" width="30">
+              <img src="../assets/resources/picture/qq.png" align="center" height="30" width="30">
+            </td>
+            <td width="30%" align="center">
+              <table cellspacing="10">
+                <tr>
+                  <td><a href="//www.baidu.com">联系我们</a></td>
+                  <td><a href="//www.baidu.com">公司介绍</a></td>
+                </tr>
+                <tr>
+                  <td><a href="//www.baidu.com">媒体中心</a></td>
+                  <td><a href="//www.baidu.com">投资讯息</a></td>
+                </tr>
+                <tr>
+                  <td><a href="//www.baidu.com">招贤纳士</a></td>
+                  <td><a href="//www.baidu.com">企业责任</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+  </div>
   </div>
 </template>
 

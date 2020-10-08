@@ -170,5 +170,23 @@ li{list-style: none;}
   width: 100%;
   position: absolute;
   top:1450px;
-  background-color: #65a1a1;
+}
+.all{
+  color: #FFFFFF;
+}
+a:link {text-decoration:none;color:#FFFFFF;}
+a:hover {text-decoration:underline;color:#FFFFFF;}
+a:active{text-decoration:none;color:#FFFFFF;}
+a:visited {text-decoration:none;color:#FFFFFF;}
+.head88{
+  height:200px;
+  width: 100%;
+  position: absolute;
+  top:1300px;
+}
+.head888{
+  height:200px;
+  width: 100%;
+  position: absolute;
+  top:1300px;
 }

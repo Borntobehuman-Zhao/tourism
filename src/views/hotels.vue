@@ -1,14 +1,39 @@
 <template>
   <div>
+    <div class="all">
     <div class="head3">
-      <table width="100%">
+      <table width="100%" align="center">
         <tr>
-          <td><img src="../assets/resources/picture/logo.png"></td>
+          <td width="20%" align="center"><img src="../assets/resources/picture/logo.jpg" width="130px" height="60px"></td>
           <td><input type="text" placeholder="输入关键字搜索景区"/>
             <button>搜索</button>
           </td>
+          <td align="center">
+            <router-link to="/index">首页</router-link>
+          </td>
+          <td align="center">
+            <router-link to="/attractions">景点推荐</router-link>
+          </td>
+          <td align="center">
+            <router-link to="/hotels">酒店推荐</router-link>
+          </td>
+          <td align="center"><a href="#">旅游攻略</a></td>
           <td>咨询热线：88888888</td>
-          <td>
+          <td v-if="isLogin" width="10%" align="center">
+            <el-dropdown>
+  <span class="el-dropdown-link">
+   <img src="../assets/resources/picture/message.png"/>个人中心
+  </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>
+                  <router-link to="login">登出</router-link>
+                </el-dropdown-item>
+                <el-dropdown-item divided>合作</el-dropdown-item>
+                <el-dropdown-item disabled>协作伙伴</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </td>
+          <td v-if="!isLogin">
             <router-link to="/login">
               <el-button type="success " round>登录</el-button>
             </router-link>
@@ -16,27 +41,11 @@
         </tr>
       </table>
     </div>
-    <div class="head2">
-      <table width="100%" height="50px" align="center">
-        <tr>
-          <td align="center"><a href="../views/index.vue">首页</a></td>
-          <td align="center">
-            <router-link to="/attractions">景点推荐
-            </router-link>
-          </td>
-          <td align="center">
-            <router-link to="/hotels">酒店推荐
-            </router-link>
-          </td>
-          <td align="center"><a href="#">旅游攻略</a></td>
-        </tr>
-      </table>
-    </div>
     <div class="picture1">
       <div class="block">
         <el-carousel trigger="click" height="570px" align="center">
           <el-carousel-item v-for="item in imageList" :key="item">
-            <img v-bind:src="item.url" width="96%">
+            <img v-bind:src="item.url" width="100%">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -78,7 +87,7 @@
       <table width="90%" align="center" height="200px">
         <tr>
           <td width="30%" align="center">
-            <img src="../assets/resources/picture/logo.png" align="center" height="40" width="40">
+            <img src="../assets/resources/picture/logo.jpg" align="center" height="40" width="90">
             <h3>风尚三秦</h3>
             <p>查看所有免费预订电话</p>
             <p> 区域销售办事处 | 公司联系方式</p>
@@ -109,6 +118,7 @@
       </table>
     </div>
   </div>
+</div>
 </template>
 
 <script>

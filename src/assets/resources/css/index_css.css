@@ -58,11 +58,19 @@
     height: 300px;
     width: 100%;
 }
-a:link {text-decoration:none;color:blue;}
-a:hover {text-decoration:underline;color:red;}
-a:active{text-decoration:none;color:yellow;}
-a:visited {text-decoration:none;color:green;}
+a:link {text-decoration:none;color:#FFFFFF;}
+a:hover {text-decoration:underline;color:#FFFFFF;}
+a:active{text-decoration:none;color:#FFFFFF;}
+a:visited {text-decoration:none;color:#FFFFFF;}
 .head3{
     width:100%;
-    height:80px;
+    height:80px;}
+.all{
+ color:#FFFFFF;
+}
+.head8{
+  height:200px;
+  width: 100%;
+  position: absolute;
+  top:1300px;
 }
